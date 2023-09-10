@@ -8,13 +8,18 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #97a83f;
+}
+img{
+  width: 100%;
+  height: auto;
 }
 main{
   width: 440px;
   height: 600px;
-  background-color: aqua;
-  border: 1px solid black;
-  border-radius: 5px;
+  background-color: rgb(255, 255, 255);
+  border: 3px solid black;
+  border-radius: 10px;
   padding: 20px;
 }
 .cards{
@@ -26,6 +31,31 @@ main{
 .cards__place{
   width: 90px;
   height: 90px;
-  background-color: blueviolet;
-  border-radius: 3px;
+  background-color: #97a83f;
+  border: 2px solid black;
+  border-radius: 5px;
+  position: relative;
+}
+.cards__front, .cards__back{
+  background-color: white;
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  border-radius: 5px;
+  border: 2px solid black;
+  padding: 5px;
+  transition: all 1s;
+}
+.cards__back{
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+}
+.cards__place:hover .cards__back{
+  transform: rotateY(0deg);
+}
+.cards__place:hover .cards__front{
+  transform: rotateY(180deg);
 }
