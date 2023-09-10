@@ -1,0 +1,31 @@
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body{
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+main{
+  width: 440px;
+  height: 600px;
+  background-color: aqua;
+  border: 1px solid black;
+  border-radius: 5px;
+  padding: 20px;
+}
+.cards{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.cards__place{
+  width: 90px;
+  height: 90px;
+  background-color: blueviolet;
+  border-radius: 3px;
+}
