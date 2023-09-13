@@ -11,13 +11,26 @@
   <main>
     <h1>Memorama</h1>
     <section class="options">
-      <button class="options__button">play</button>
-      <button class="options__button">mode</button>
+      <button class="options__button">start</button>
+      <button class="options__button">mode 1</button>
     </section>
     <section class="display">
-      <div class="display__time">1232</div>
-      <div class="display__moves">moves:32</div>
-      <div class="display__chances">23</div>
+      <div class="display__time">
+        <img src="img/time.png" alt="" class="time-image">
+        <span class="minutes">00</span>
+        <span class="separator">:</span>
+        <span class="seconds">00</span>
+      </div>
+      <div class="display__moves" >
+        <img src="img/fail.png" alt="" class="time-image"> 
+        <!-- <span class="separator">:</span> -->
+        <span id="moves">00</span>
+      </div>
+      <div class="display__chances">
+        <img src="img/heart.png" alt="" class="time-image">
+        <img src="img/heart.png" alt="" class="time-image">
+        <img src="img/heart.png" alt="" class="time-image">
+      </div>
     </section>
      <section class="cards">
       <div class="cards__place">
