@@ -3,6 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
+@font-face {
+  font-family: 'textmeone';
+  src: url(font/TextMeOne-Regular.ttf);
+}
+
 body{
   min-height: 100vh;
   display: flex;
@@ -10,6 +15,15 @@ body{
   justify-content: center;
   background-color: #97a83f;
   user-select: none;
+  font-family: 'textmeone';
+}
+h1{
+  text-transform: uppercase;
+  font-size: 22px;
+  font-weight: bold;
+  text-align: center;
+  background-color: rgb(202, 202, 202);
+  border-radius: 5px;
 }
 img{
   width: 100%;
@@ -22,7 +36,16 @@ main{
   border: 3px solid black;
   border-radius: 10px;
   padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
 }
+
+.display{
+  display: flex;
+  justify-content: space-between;
+}
+
 .cards{
   display: flex;
   justify-content: center;
