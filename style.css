@@ -8,6 +8,11 @@
   src: url(font/TextMeOne-Regular.ttf);
 }
 
+:root{
+  --mainColor:#97a83f;
+  --secondColor:#d8394c;
+}
+
 body{
   min-height: 100vh;
   display: flex;
@@ -16,6 +21,8 @@ body{
   background-color: #97a83f;
   user-select: none;
   font-family: 'textmeone';
+  text-transform: uppercase;
+  font-weight: bold;
 }
 h1{
   text-transform: uppercase;
@@ -24,6 +31,7 @@ h1{
   text-align: center;
   background-color: rgb(202, 202, 202);
   border-radius: 5px;
+  margin-bottom: 20px;
 }
 img{
   width: 100%;
@@ -31,21 +39,60 @@ img{
 }
 main{
   width: 440px;
-  height: 600px;
+  /* height: 600px; */
   background-color: rgb(255, 255, 255);
   border: 3px solid black;
   border-radius: 10px;
   padding: 20px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 15px;
 }
-
+.options{
+  display: flex;
+  gap: 10px;
+}
+.options__button{
+  background-color: var(--secondColor);
+  color: white;
+  height: 30px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  border: 2px solid black;
+  text-transform: uppercase;
+  font-weight: bold;
+  flex-grow: 1;
+  flex-basis: 50%;
+  font-family: 'textmeone';
+  
+  cursor: pointer;
+  font-size: 15px;
+}
 .display{
   display: flex;
+  padding: 5px 10px;
   justify-content: space-between;
+  border: 1px solid black;
+  height: 35px;
+    align-items: center;
 }
-
+.display__time, .display__moves, .display__chances{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 3px;
+  width: 75px;
+}
+/* .display__time{
+  width: 75px;
+} */
+.time-image{
+  width: 18px;
+  margin-right: 3px;
+}
+.separator{
+  margin-top: -4px;
+}
 .cards{
   display: flex;
   justify-content: center;
@@ -60,6 +107,22 @@ main{
   border-radius: 5px;
   position: relative;
 }
+/* .cards__place::before, .cards__place::after{
+  content: "";
+  position: absolute;
+  left: 50%;
+  height: 5px;
+  width: 4px;
+  margin-left: -2px;
+  background-color: black;
+}
+
+.cards__place::before{
+  top: 0;
+}
+.cards__place::after{
+  bottom: 0;
+} */
 .cards__front, .cards__back{
   background-color: white;
   position: absolute;
