@@ -54,7 +54,6 @@ const fault = () => {
 
 const checkSelections = (e) => {
   const count = selectedCards.push(e.target.parentElement);
-
   e.target.parentElement.classList.add('flip');
   if (count === 2) {
     panelCards.classList.add('bloqued')
@@ -63,7 +62,6 @@ const checkSelections = (e) => {
     } else {
       setTimeout(succes, 400);
     }
-
   }
 }
 
