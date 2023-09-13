@@ -9,6 +9,7 @@ body{
   align-items: center;
   justify-content: center;
   background-color: #97a83f;
+  user-select: none;
 }
 img{
   width: 100%;
@@ -46,16 +47,26 @@ main{
   translate: -50% -50%;
   border-radius: 5px;
   border: 2px solid black;
-  padding: 5px;
-  transition: all 1s;
-}
-.cards__back{
-  transform: rotateY(180deg);
+  padding: 10px;
+  transition: transform .5s;
   backface-visibility: hidden;
 }
-.cards__place:hover .cards__back{
+
+.cards__back{
+  transform: rotateY(180deg);
+}
+.cards__front{
+  cursor: pointer;
+}
+.flip .cards__back{
   transform: rotateY(0deg);
 }
-.cards__place:hover .cards__front{
+.flip .cards__front{
   transform: rotateY(180deg);
+}
+.bloqued{
+  pointer-events: none;
+}
+.hits{
+  filter: grayscale(1);
 }
