@@ -5,11 +5,17 @@ const minutes = document.querySelector('.minutes');
 const seconds = document.querySelector('.seconds');
 const lives = document.querySelector('.display__chances');
 const startButton = document.getElementById('start');
-const modesButton = document.getElementById('mode');
-
+const modesButton = document.getElementById('modes');
+const modal_mode = document.getElementById('modal-mode');
+const mode1_button = document.getElementById('mode1');
+const mode2_button = document.getElementById('mode2');
+const instruction1 = document.querySelector('.instruction--mode1');
+const instruction2 = document.querySelector('.instruction--mode2');
+const modal_win = document.getElementById('win');
+const play_again = document.getElementById('play-again');
 
 let selectedCards = []
-let hits = 0, fails = 0, timer;
+let hits = 0, fails = 0, timer, mode = true;
 
 const cards = [
   { name: 'onion', image: 'img/onion.png' },
@@ -42,10 +48,6 @@ const shuffle = () => {
     e.innerHTML = `<img src='${cards[f].image}'>`;
     e.setAttribute('data-name', cards[f].name);
   })
-}
-
-const completeGame = () => {
-  alert('ganasteeeeee')
 }
 
 const startTimer = () => {
@@ -97,13 +99,12 @@ const checkSelections = (e) => {
   }
 }
 
-shuffle();
-
 const startGame = () => {
   panelCards.classList.remove('bloqued');
   startButton.classList.add('disabled');
   modesButton.classList.add('disabled');
   lives.classList.add('disabled');
+  panelCards.classList.remove('shuffle');
   timer = startTimer();
 }
 
@@ -113,7 +114,23 @@ const endGame = () => {
   modesButton.classList.remove('disabled');
   lives.classList.remove('disabled');
   clearInterval(timer);
+  modal_win.classList.remove('hidden');
 }
+
+const changeMode = (e) => {
+  mode2_button.classList.toggle('unselected');
+  mode1_button.classList.toggle('unselected');
+  instruction1.classList.toggle('show');
+  instruction2.classList.toggle('show');
+  if (e.target.matches('#mode1')) mode = true;
+  else mode = false;
+}
+
+window.addEventListener('load', () => {
+  panelCards.classList.add('shuffle');
+  shuffle();
+})
+
 
 document.addEventListener('click', (e) => {
   if (e.target.matches('.cards__front')) {
@@ -121,5 +138,34 @@ document.addEventListener('click', (e) => {
   }
   if (e.target.matches('#start')) {
     startGame()
+  }
+  if (e.target.matches('#play-again')) {
+    modal_win.classList.add('hidden')
+    fails_indicator.innerHTML = '00';
+    minutes.innerHTML = '00';
+    seconds.innerHTML = '00';
+    Array.from(document.querySelectorAll('.flip')).forEach((e) => {
+      e.classList.remove('flip');
+    })
+    Array.from(document.querySelectorAll('.hits')).forEach((e) => {
+      e.classList.remove('hits');
+    })
+    panelCards.classList.add('shuffle');
+    shuffle();
+  }
+  if (e.target.matches('#modes'))
+    modal_mode.classList.remove("hidden");
+
+  if (e.target.matches('#mode1'))
+    changeMode(e);
+
+  if (e.target.matches('#mode2'))
+    changeMode(e);
+
+  if (e.target.matches('#save-mode')) {
+    modal_mode.classList.add("hidden");
+    if (mode) modesButton.innerHTML = 'mode 1';
+    else modesButton.innerHTML = 'mode 2';
+
   }
 })
