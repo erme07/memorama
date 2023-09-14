@@ -128,7 +128,7 @@ img{
 /* .display__time{
   width: 75px;
 } */
-.minutes, .seconds{
+.cent-seconds, .seconds{
   display: inline-block;
   width: 17px;
 }

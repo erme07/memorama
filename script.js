@@ -1,7 +1,7 @@
 const cardsArray = Array.from(document.querySelectorAll('.cards__back'));
 const panelCards = document.querySelector('.cards')
 const fails_indicator = document.getElementById('fails');
-const minutes = document.querySelector('.minutes');
+const cent_seconds = document.querySelector('.cent-seconds');
 const seconds = document.querySelector('.seconds');
 const lives = document.querySelector('.display__chances');
 const startButton = document.getElementById('start');
@@ -51,19 +51,19 @@ const shuffle = () => {
 }
 
 const startTimer = () => {
-  let sec_count = 0, min_count = 0;
+  let cent_count = 0, seg_count = 0;
   const timer = setInterval(() => {
-    sec_count++
-    if (sec_count === 60) {
-      sec_count = 0;
-      min_count++
-      if (min_count == 60) min_count = 0;
-      if (min_count < 10) minutes.innerHTML = '0' + min_count;
-      else minutes.innerHTML = min_count;
+    cent_count++
+    if (cent_count === 100) {
+      cent_count = 0;
+      seg_count++
+      if (seg_count == 60) seg_count = 0;
+      if (seg_count < 10) seconds.innerHTML = '0' + seg_count;
+      else seconds.innerHTML = seg_count;
     }
-    if (sec_count < 10) seconds.innerHTML = '0' + sec_count;
-    else seconds.innerHTML = sec_count;
-  }, 1000)
+    if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
+    else cent_seconds.innerHTML = cent_count;
+  }, 10)
   return timer
 }
 
