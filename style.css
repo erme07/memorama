@@ -72,11 +72,12 @@ main{
   display: flex;
   padding: 5px 10px;
   justify-content: space-between;
-  border: 1px solid black;
+  border: 2px solid black;
+  border-radius: 5px;
   height: 35px;
-    align-items: center;
+  align-items: center;
 }
-.display__time, .display__moves, .display__chances{
+.display__time, .display__fails, .display__chances{
   display: flex;
   align-items: center;
   justify-content: center;
@@ -86,7 +87,11 @@ main{
 /* .display__time{
   width: 75px;
 } */
-.time-image{
+.minutes, .seconds{
+  display: inline-block;
+  width: 17px;
+}
+.display-image{
   width: 18px;
   margin-right: 3px;
 }
@@ -151,6 +156,10 @@ main{
   transform: rotateY(180deg);
 }
 .bloqued{
+  pointer-events: none;
+}
+.disabled{
+  opacity: .3;
   pointer-events: none;
 }
 .hits{

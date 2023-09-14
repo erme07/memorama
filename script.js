@@ -1,11 +1,15 @@
 const cardsArray = Array.from(document.querySelectorAll('.cards__back'));
 const panelCards = document.querySelector('.cards')
-const moves_indicator = document.getElementById('moves');
+const fails_indicator = document.getElementById('fails');
 const minutes = document.querySelector('.minutes');
 const seconds = document.querySelector('.seconds');
+const lives = document.querySelector('.display__chances');
+const startButton = document.getElementById('start');
+const modesButton = document.getElementById('mode');
+
 
 let selectedCards = []
-let hits = 0, moves = 0;
+let hits = 0, fails = 0, timer;
 
 const cards = [
   { name: 'onion', image: 'img/onion.png' },
@@ -67,7 +71,7 @@ const succes = () => {
   selectedCards[1].children[1].classList.add('hits');
   selectedCards = [];
   panelCards.classList.remove('bloqued');
-  if (hits === 8) completeGame();
+  if (hits === 8) endGame();
 }
 
 const fault = () => {
@@ -81,9 +85,9 @@ const checkSelections = (e) => {
   const count = selectedCards.push(e.target.parentElement);
   e.target.parentElement.classList.add('flip');
   if (count === 2) {
-    moves++
-    if (moves < 10) moves_indicator.innerHTML = '0' + moves;
-    else moves_indicator.innerHTML = moves;
+    fails++
+    if (fails < 10) fails_indicator.innerHTML = '0' + fails;
+    else fails_indicator.innerHTML = fails;
     panelCards.classList.add('bloqued')
     if (selectedCards[0].children[1].getAttribute('data-name') !== selectedCards[1].children[1].getAttribute('data-name')) {
       setTimeout(fault, 700);
@@ -95,10 +99,27 @@ const checkSelections = (e) => {
 
 shuffle();
 
+const startGame = () => {
+  panelCards.classList.remove('bloqued');
+  startButton.classList.add('disabled');
+  modesButton.classList.add('disabled');
+  lives.classList.add('disabled');
+  timer = startTimer();
+}
 
+const endGame = () => {
+  panelCards.classList.add('bloqued');
+  startButton.classList.remove('disabled');
+  modesButton.classList.remove('disabled');
+  lives.classList.remove('disabled');
+  clearInterval(timer);
+}
 
 document.addEventListener('click', (e) => {
   if (e.target.matches('.cards__front')) {
     checkSelections(e)
+  }
+  if (e.target.matches('#start')) {
+    startGame()
   }
 })
