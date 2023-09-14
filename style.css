@@ -37,36 +37,77 @@ img{
   width: 100%;
   height: auto;
 }
-main{
+
+.container{
   width: 440px;
-  /* height: 600px; */
   background-color: rgb(255, 255, 255);
   border: 3px solid black;
   border-radius: 10px;
   padding: 20px;
-  display: flex;
-  flex-direction: column;
   gap: 15px;
 }
-.options{
+.flex{
   display: flex;
   gap: 10px;
 }
-.options__button{
+.flex-column{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.container--main{
+  align-items: stretch;
+}
+
+
+.button{
   background-color: var(--secondColor);
   color: white;
-  height: 30px;
+  height: 35px;
   padding: 5px 10px;
   border-radius: 5px;
   border: 2px solid black;
   text-transform: uppercase;
   font-weight: bold;
-  flex-grow: 1;
-  flex-basis: 50%;
   font-family: 'textmeone';
-  
   cursor: pointer;
   font-size: 15px;
+}
+
+.flex-column > .button{
+  width: 100%;
+}
+.button--half{
+  flex-basis: 50%;
+}
+.mode-options{
+  width: 100%;
+}
+.mode-instruction{
+  font-size: 15px;
+  padding-left: 16px;
+  height: 130px;
+  border: 1px solid black;
+  border-left:none ;
+  border-right: none;
+  overflow: hidden;
+  position: relative;
+  width: 100%;
+}
+.instruction{
+  position: absolute;
+  top: 50%;
+  transition: translate 1s;
+  /* translate: 0px -50%; */
+}
+.instruction--mode2{
+  translate: 300px -50%;
+}
+.instruction--mode1{
+  translate: -300px -50%;
+}
+.show{
+  translate: 0 -50%;
 }
 .display{
   display: flex;
@@ -112,22 +153,7 @@ main{
   border-radius: 5px;
   position: relative;
 }
-/* .cards__place::before, .cards__place::after{
-  content: "";
-  position: absolute;
-  left: 50%;
-  height: 5px;
-  width: 4px;
-  margin-left: -2px;
-  background-color: black;
-}
 
-.cards__place::before{
-  top: 0;
-}
-.cards__place::after{
-  bottom: 0;
-} */
 .cards__front, .cards__back{
   background-color: white;
   position: absolute;
@@ -155,6 +181,50 @@ main{
 .flip .cards__front{
   transform: rotateY(180deg);
 }
+
+.shuffle .cards__back{
+  animation: .15s linear 5 alternate flipShuffle;
+}
+.shuffle .cards__front{
+  animation: .15s linear 5 alternate flipShuffle2;
+}
+.shuffle .cards__back img{
+  opacity: 0;
+}
+
+@keyframes flipShuffle {
+  0%{
+    transform: rotateY(0deg)
+  }
+  100%{
+    transform: rotateY(180deg)
+  }
+}
+
+@keyframes flipShuffle2 {
+  0%{
+    transform: rotateY(180deg)
+  }
+  100%{
+    transform: rotateY(0deg)
+  }
+}
+
+.modal-win{
+  position: absolute;
+  inset: 0;
+  background-color: rgba(0, 0, 0, 0.932);
+}
+.container--modal{
+  position: absolute;
+  font-size: 25px;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 310px;
+  justify-content: space-between;
+}
+
 .bloqued{
   pointer-events: none;
 }
@@ -162,6 +232,12 @@ main{
   opacity: .3;
   pointer-events: none;
 }
+.unselected{
+  opacity: .6;
+}
 .hits{
   filter: grayscale(1);
+}
+.hidden{
+  visibility: hidden;
 }
