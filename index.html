@@ -12,20 +12,19 @@
     <h1>Memorama</h1>
     <section class="options flex">
       <button class="button button--half" id="start">start</button>
-      <button class="button button--half" id="modes">mode 1</button>
+      <button class="button button--half" id="modes">challenge</button>
     </section>
     <section class="display">
       <div class="display__time" title="Time">
         <img src="img/time.png" alt="" class="display-image">
-        <span class="seconds">00</span>
-        <span class="separator">:</span>
+        <span class="seconds">40</span>
+        <span>.</span>
         <span class="cent-seconds">00</span>
       </div>
-      <div class="display__fails" title="Fails">
-        <img src="img/fail.png" alt="" class="display-image">
-        <span id="fails">00</span>
+      <div class="display__mode" id="display-mode">
+        Mode 1
       </div>
-      <div class="display__chances" title="Lives">
+      <div class="display__chances disabled" title="Lives">
         <img src="img/heart.png" alt="" class="display-image">
         <img src="img/heart.png" alt="" class="display-image">
         <img src="img/heart.png" alt="" class="display-image">
@@ -98,32 +97,38 @@
       </div>
      </section>
   </main>
-  <section class="modal-win hidden" id="win">
+  <section class="modal hidden" id="win">
     <div class="container container--modal flex-column">
-      <p>You Won!</p>
-      <button class="button" id="play-again">Play Again</button>
+      <p>You Win &#128530;</p>
+      <button class="button button--rematch">Rematch</button>
     </div>
   </section>
-  <section class="modal-win modal-mode hidden" id="modal-mode">
+  <section class="modal hidden" id="lose">
     <div class="container container--modal flex-column">
-      <p>Select Mode</p>
+      <p>You Lose &#128518;</p>
+      <button class="button button--rematch">Rematch</button>
+    </div>
+  </section>
+  <section class="modal hidden" id="modal-mode">
+    <div class="container container--modal flex-column">
+      <p>Select Challenge &#128520;</p>
       <div class="mode-options flex">
         <button class="button button--half" id="mode1">mode 1</button>
         <button class="button button--half unselected" id="mode2">mode 2</button>
       </div>
       <div class="mode-instruction">
         <ul class="instruction instruction--mode1 show">
-          <li>You have 40 seconds to find the pairs</li>
+          <li>40 seconds to find the pairs</li>
           <li>There is no limit of attempts.</li>
           <li>Use as few attempts as possible</li>
         </ul>
         <ul class="instruction instruction--mode2">
-          <li>You have 10 seconds to memorize the figures.</li>
-          <li>You have 1 minute to find the pairs.</li>
+          <li>10 seconds to memorize the positions.</li>
+          <li>30 seconds to find the pairs.</li>
           <li>You can't fail more than three times.</li>
         </ul>
       </div>
-      <button class="button" id="save-mode">Save</button>
+      <button class="button" id="save-mode">I Agree</button>
     </div>
   </section>
 </body>

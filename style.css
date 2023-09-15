@@ -122,22 +122,26 @@ img{
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 3px;
+  gap: 2px;
   width: 75px;
 }
-/* .display__time{
-  width: 75px;
-} */
+.display__mode{
+  background-color: black;
+  padding: 3px 10px;
+  color: white;
+  border-radius: 5px;
+}
+
 .cent-seconds, .seconds{
   display: inline-block;
   width: 17px;
 }
+.seconds{
+  text-align: right;
+}
 .display-image{
   width: 18px;
   margin-right: 3px;
-}
-.separator{
-  margin-top: -4px;
 }
 .cards{
   display: flex;
@@ -210,7 +214,7 @@ img{
   }
 }
 
-.modal-win{
+.modal{
   position: absolute;
   inset: 0;
   background-color: rgba(0, 0, 0, 0.932);
