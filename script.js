@@ -1,6 +1,7 @@
 const cardsArray = Array.from(document.querySelectorAll('.cards__back'));
 const panelCards = document.querySelector('.cards')
 const display_mode = document.getElementById('display-mode');
+const hearts = Array.from(document.querySelectorAll('.heart'));
 
 const cent_seconds = document.querySelector('.cent-seconds');
 const seconds = document.querySelector('.seconds');
@@ -101,6 +102,28 @@ const countDownTimer = (seg) => {
   }, 10)
   return timer_
 }
+const modeOne = () => {
+  let cent_count = 100, seg_count = 39;
+  seconds.innerHTML = seg_count
+  timer = setInterval(() => {
+    cent_count--;
+    if (cent_count === 0 && seg_count === 0) {
+      cent_seconds.innerHTML = '00';
+      endGame(false);
+      return
+    }
+    if (cent_count === 0) {
+      cent_count = 100;
+      seg_count--
+      if (seg_count === 10) display_time.classList.add('display__time--red');
+      if (seg_count < 10) seconds.innerHTML = '0' + seg_count
+      else seconds.innerHTML = seg_count;
+    }
+    if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
+    else cent_seconds.innerHTML = cent_count;
+
+  }, 10)
+}
 
 const succes = () => {
   hits++;
@@ -108,10 +131,20 @@ const succes = () => {
   selectedCards[1].children[1].classList.add('hits');
   selectedCards = [];
   panelCards.classList.remove('bloqued');
-  if (hits === 8) endGame();
+  if (hits === 8) endGame(true);
 }
 
 const fault = () => {
+  if (startButton.getAttribute('data-mode') === 'mode2') {
+    hearts[fails].src = 'img/void-heart.png';
+    fails++
+    if (fails === 3) {
+      fails = 0;
+      setTimeout(endGame, 400, false)
+      endGame(false)
+      return
+    }
+  }
   selectedCards[0].classList.remove('flip');
   selectedCards[1].classList.remove('flip');
   panelCards.classList.remove('bloqued')
@@ -124,20 +157,11 @@ const checkSelections = (e) => {
   if (count === 2) {
     panelCards.classList.add('bloqued')
     if (selectedCards[0].children[1].getAttribute('data-name') !== selectedCards[1].children[1].getAttribute('data-name')) {
-      fails++
-      if (fails === 3) {
-        setTimeout(endGame, 400, false)
-      }
-      setTimeout(fault, 700);
+      setTimeout(fault, 500);
     } else {
-      setTimeout(succes, 400);
+      setTimeout(succes, 100);
     }
   }
-}
-
-const modeOne = () => {
-  seconds.innerHTML = '39'
-  timer = countDownTimer(39);
 }
 
 const modeTwo = () => {
@@ -154,14 +178,15 @@ const startGame = () => {
   startButton.classList.add('disabled');
   modesButton.classList.add('disabled');
   panelCards.classList.remove('shuffle');
-  if (mode) {
-    lives.classList.add('disabled');
+  if (startButton.getAttribute('data-mode') === 'mode1') {
     modeOne();
   }
   else modeTwo();
 }
 
 const endGame = (condition) => {
+  selectedCards = [];
+  hits = 0;
   panelCards.classList.add('bloqued');
   startButton.classList.remove('disabled');
   modesButton.classList.remove('disabled');
@@ -172,18 +197,32 @@ const endGame = (condition) => {
 
 }
 
-const changeMode = (e) => {
-  mode2_button.classList.toggle('unselected');
-  mode1_button.classList.toggle('unselected');
-  instruction1.classList.toggle('show');
-  instruction2.classList.toggle('show');
+const changeMode = (e, mode) => {
   if (e.target.matches('#mode1')) {
-    mode = true;
+    mode2_button.classList.add('unselected');
+    mode1_button.classList.remove('unselected');
+    instruction1.classList.add('show');
+    instruction2.classList.remove('show');
     seconds.innerHTML = '40';
+  } else {
+    mode1_button.classList.add('unselected');
+    mode2_button.classList.remove('unselected');
+    instruction2.classList.add('show');
+    instruction1.classList.remove('show');
+    seconds.innerHTML = '10';
+  }
+  startButton.setAttribute('data-mode', mode)
+}
+
+const saveMode = () => {
+  modal_mode.classList.add("hidden");
+  if (startButton.getAttribute('data-mode') === 'mode1') {
+    lives.classList.add('disabled');
+    display_mode.innerHTML = 'mode 1';
   }
   else {
-    seconds.innerHTML = '10';
-    mode = false;
+    lives.classList.remove('disabled');
+    display_mode.innerHTML = 'mode 2';
   }
 }
 
@@ -203,10 +242,13 @@ document.addEventListener('click', (e) => {
   if (e.target.matches('.button--rematch')) {
     modal_win.classList.add('hidden')
     modal_lose.classList.add('hidden')
+    display_time.classList.remove('display__time--red')
+    hearts.forEach((e) => {
+      e.src = 'img/heart.png'
+    })
     if (mode) seconds.innerHTML = '40';
     else seconds.innerHTML = '10';
     cent_seconds.innerHTML = '00';
-    display_time.style = '';
     Array.from(document.querySelectorAll('.flip')).forEach((e) => {
       e.classList.remove('flip');
     })
@@ -220,21 +262,12 @@ document.addEventListener('click', (e) => {
     modal_mode.classList.remove("hidden");
 
   if (e.target.matches('#mode1'))
-    changeMode(e);
+    changeMode(e, 'mode1');
 
   if (e.target.matches('#mode2'))
-    changeMode(e);
+    changeMode(e, 'mode2');
 
   if (e.target.matches('#save-mode')) {
-    modal_mode.classList.add("hidden");
-    if (mode) {
-      lives.classList.add('disabled');
-      display_mode.innerHTML = 'mode 1';
-    }
-    else {
-      lives.classList.remove('disabled');
-      display_mode.innerHTML = 'mode 2';
-    }
-
+    saveMode()
   }
 })
