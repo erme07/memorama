@@ -40,89 +40,136 @@ const cards = [
 ]
 
 const shuffle = () => {
-  let m = cards.length, aux, i;
-  while (m) {
-    i = Math.floor(Math.random() * m--);
-    aux = cards[m];
-    cards[m] = cards[i];
+  let cardsLenght = cards.length, aux, i;
+  while (cardsLenght) {
+    i = Math.floor(Math.random() * cardsLenght--);
+    aux = cards[cardsLenght];
+    cards[cardsLenght] = cards[i];
     cards[i] = aux;
   }
-  cardsArray.forEach((e, f) => {
-    e.innerHTML = `<img src='${cards[f].image}'>`;
-    e.setAttribute('data-name', cards[f].name);
+  cardsArray.forEach((e, j) => {
+    e.innerHTML = `<img src='${cards[j].image}'>`;
+    e.setAttribute('data-name', cards[j].name);
   })
 }
 
-// const startTimer = () => {
-//   let cent_count = 0, seg_count = 0;
-//   const timer = setInterval(() => {
-//     cent_count++
-//     if (cent_count === 100) {
-//       cent_count = 0;
-//       seg_count++
-//       if (seg_count == 60) seg_count = 0;
-//       if (seg_count < 10) seconds.innerHTML = '0' + seg_count;
-//       else seconds.innerHTML = seg_count;
-//     }
-//     if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
-//     else cent_seconds.innerHTML = cent_count;
-//   }, 10)
-//   return timer
-// }
-
-const countDownTimer = (seg) => {
-  let cent_count = 100, seg_count = seg, aux = seg;
-  const timer_ = setInterval(() => {
-    cent_count--;
-    if (cent_count === 0) {
-      if (seg_count === 0 && cent_count === 0) {
-        cent_seconds.innerHTML = '00';
-        clearInterval(timer_);
-        if (aux !== 9) endGame(false);
-        else {
-          seconds.innerHTML = '29'
-          timer = countDownTimer(29);
-          Array.from(document.querySelectorAll('.cards__place')).forEach((e) => {
-            e.classList.remove('flip');
-          })
-        }
-        return;
-      }
-      cent_count = 100;
-      seg_count--
-      if (seg_count < 10) {
-        seconds.innerHTML = '0' + seg_count
-        if (aux !== 9) display_time.style = 'color:red';
-      }
-      else seconds.innerHTML = seg_count;
-    }
-    if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
-    else cent_seconds.innerHTML = cent_count;
-
-  }, 10)
-  return timer_
+const endGame = (condition) => {
+  selectedCards = [];
+  hits = 0;
+  fails = 0;
+  panelCards.classList.add('bloqued');
+  startButton.classList.remove('disabled');
+  modesButton.classList.remove('disabled');
+  lives.classList.remove('disabled');
+  clearInterval(timer);
+  if (condition) modal_win.classList.remove('hidden');
+  else modal_lose.classList.remove('hidden');
 }
+
 const modeOne = () => {
   let cent_count = 100, seg_count = 39;
   seconds.innerHTML = seg_count
   timer = setInterval(() => {
     cent_count--;
-    if (cent_count === 0 && seg_count === 0) {
-      cent_seconds.innerHTML = '00';
-      endGame(false);
-      return
-    }
-    if (cent_count === 0) {
+    if (cent_count === 0 && seg_count === 0) endGame(false);
+    else if (cent_count === 0) {
       cent_count = 100;
       seg_count--
-      if (seg_count === 10) display_time.classList.add('display__time--red');
+      if (seg_count === 9) display_time.classList.add('display__time--red');
       if (seg_count < 10) seconds.innerHTML = '0' + seg_count
       else seconds.innerHTML = seg_count;
     }
     if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
+    else if (cent_count === 100) cent_seconds.innerHTML = '00';
     else cent_seconds.innerHTML = cent_count;
 
   }, 10)
+}
+
+const modeTwoTimer = (seg_count, aux) => {
+  let cent_count = 100;
+  const timer_ = setInterval(() => {
+    cent_count--;
+    if (cent_count === 0 && seg_count === 0) {
+      clearInterval(timer_);
+      if (aux) endGame(false);
+      else {
+        seconds.innerHTML = '29'
+        timer = modeTwoTimer(29, true);
+        Array.from(document.querySelectorAll('.cards__place')).forEach((e) => {
+          e.classList.remove('flip');
+        })
+      }
+    } else if (cent_count === 0) {
+      cent_count = 100;
+      seg_count--
+      if (seg_count === 9) display_time.classList.add('display__time--red');
+      if (seg_count < 10) seconds.innerHTML = '0' + seg_count
+      else seconds.innerHTML = seg_count;
+    }
+    if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
+    else if (cent_count === 100) cent_seconds.innerHTML = '00';
+    else cent_seconds.innerHTML = cent_count;
+  }, 10)
+  return timer_
+}
+
+const modeTwo = () => {
+  const cards = Array.from(document.querySelectorAll('.cards__place'));
+  cards.forEach((e) => {
+    e.classList.add('flip')
+  })
+  seconds.innerHTML = '09'
+  timer = modeTwoTimer(9, false);
+}
+
+const changeMode = (e, mode) => {
+  if (e.target.matches('#mode1')) {
+    mode2_button.classList.add('unselected');
+    mode1_button.classList.remove('unselected');
+    instruction1.classList.add('show');
+    instruction2.classList.remove('show');
+    seconds.innerHTML = '40';
+  } else {
+    mode1_button.classList.add('unselected');
+    mode2_button.classList.remove('unselected');
+    instruction2.classList.add('show');
+    instruction1.classList.remove('show');
+    seconds.innerHTML = '10';
+  }
+  startButton.setAttribute('data-mode', mode)
+}
+
+const saveMode = () => {
+  modal_mode.classList.add("hidden");
+  if (startButton.getAttribute('data-mode') === 'mode1') {
+    lives.classList.add('disabled');
+    display_mode.innerHTML = 'mode 1';
+  }
+  else {
+    lives.classList.remove('disabled');
+    display_mode.innerHTML = 'mode 2';
+  }
+}
+
+const playAgain = () => {
+  modal_win.classList.add('hidden')
+  modal_lose.classList.add('hidden')
+  display_time.classList.remove('display__time--red')
+  hearts.forEach((item) => {
+    item.src = 'img/heart.png'
+  })
+  if (startButton.getAttribute('data-mode') === 'mode1') seconds.innerHTML = '40';
+  else seconds.innerHTML = '10';
+  cent_seconds.innerHTML = '00';
+  Array.from(document.querySelectorAll('.flip')).forEach((item) => {
+    item.classList.remove('flip');
+  })
+  Array.from(document.querySelectorAll('.hits')).forEach((item) => {
+    item.classList.remove('hits');
+  })
+  panelCards.classList.add('shuffle');
+  shuffle();
 }
 
 const succes = () => {
@@ -164,15 +211,6 @@ const checkSelections = (e) => {
   }
 }
 
-const modeTwo = () => {
-  const cards = Array.from(document.querySelectorAll('.cards__place'));
-  cards.forEach((e) => {
-    e.classList.add('flip')
-  })
-  seconds.innerHTML = '09'
-  timer = countDownTimer(9);
-}
-
 const startGame = () => {
   panelCards.classList.remove('bloqued');
   startButton.classList.add('disabled');
@@ -184,90 +222,24 @@ const startGame = () => {
   else modeTwo();
 }
 
-const endGame = (condition) => {
-  selectedCards = [];
-  hits = 0;
-  panelCards.classList.add('bloqued');
-  startButton.classList.remove('disabled');
-  modesButton.classList.remove('disabled');
-  lives.classList.remove('disabled');
-  clearInterval(timer);
-  if (condition) modal_win.classList.remove('hidden');
-  else modal_lose.classList.remove('hidden');
-
-}
-
-const changeMode = (e, mode) => {
-  if (e.target.matches('#mode1')) {
-    mode2_button.classList.add('unselected');
-    mode1_button.classList.remove('unselected');
-    instruction1.classList.add('show');
-    instruction2.classList.remove('show');
-    seconds.innerHTML = '40';
-  } else {
-    mode1_button.classList.add('unselected');
-    mode2_button.classList.remove('unselected');
-    instruction2.classList.add('show');
-    instruction1.classList.remove('show');
-    seconds.innerHTML = '10';
-  }
-  startButton.setAttribute('data-mode', mode)
-}
-
-const saveMode = () => {
-  modal_mode.classList.add("hidden");
-  if (startButton.getAttribute('data-mode') === 'mode1') {
-    lives.classList.add('disabled');
-    display_mode.innerHTML = 'mode 1';
-  }
-  else {
-    lives.classList.remove('disabled');
-    display_mode.innerHTML = 'mode 2';
-  }
-}
-
 window.addEventListener('load', () => {
   panelCards.classList.add('shuffle');
   shuffle();
 })
 
-
 document.addEventListener('click', (e) => {
-  if (e.target.matches('.cards__front')) {
-    checkSelections(e)
-  }
-  if (e.target.matches('#start')) {
-    startGame()
-  }
-  if (e.target.matches('.button--rematch')) {
-    modal_win.classList.add('hidden')
-    modal_lose.classList.add('hidden')
-    display_time.classList.remove('display__time--red')
-    hearts.forEach((e) => {
-      e.src = 'img/heart.png'
-    })
-    if (mode) seconds.innerHTML = '40';
-    else seconds.innerHTML = '10';
-    cent_seconds.innerHTML = '00';
-    Array.from(document.querySelectorAll('.flip')).forEach((e) => {
-      e.classList.remove('flip');
-    })
-    Array.from(document.querySelectorAll('.hits')).forEach((e) => {
-      e.classList.remove('hits');
-    })
-    panelCards.classList.add('shuffle');
-    shuffle();
-  }
+  if (e.target.matches('.cards__front'))
+    checkSelections(e);
+  if (e.target.matches('#start'))
+    startGame();
+  if (e.target.matches('.button--rematch'))
+    playAgain();
   if (e.target.matches('#modes'))
     modal_mode.classList.remove("hidden");
-
   if (e.target.matches('#mode1'))
     changeMode(e, 'mode1');
-
   if (e.target.matches('#mode2'))
     changeMode(e, 'mode2');
-
-  if (e.target.matches('#save-mode')) {
-    saveMode()
-  }
+  if (e.target.matches('#save-mode'))
+    saveMode();
 })
