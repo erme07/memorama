@@ -248,3 +248,19 @@ img{
 .hidden{
   visibility: hidden;
 }
+
+@media screen and (max-width:576px) {
+  .cards{
+    gap: 7px;
+  }
+  .cards__place{
+    height: unset;
+    width: 23%;
+    aspect-ratio: 1/1;
+  }
+  .cards__front, .cards__back{
+    width: 90%;
+    height: auto;
+  }
+  
+}
