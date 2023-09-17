@@ -7,3 +7,4 @@
 <a href="https://www.flaticon.com/free-icons/onion" title="onion icons">Onion icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/fruit" title="fruit icons">Fruit icons created by Freepik - Flaticon</a>
 <a href="https://www.flaticon.com/free-icons/tomato" title="tomato icons">Tomato icons created by Freepik - Flaticon</a>
+<a href="https://www.flaticon.com/free-icons/reject" title="reject icons">Reject icons created by Good Ware - Flaticon</a>
