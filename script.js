@@ -2,8 +2,8 @@ const cardsArray = Array.from(document.querySelectorAll('.cards__back')),
   panelCards = document.querySelector('.cards'),
   display_mode = document.getElementById('display-mode'),
   hearts = Array.from(document.querySelectorAll('.heart')),
-  cent_seconds = document.querySelector('.cent-seconds'),
-  seconds = document.querySelector('.seconds'),
+  cent_seconds = document.getElementById('cent-seconds'),
+  seconds = document.getElementById('seconds'),
   lives = document.querySelector('.display__chances'),
   display_time = document.querySelector('.display__time'),
   startButton = document.getElementById('start'),
@@ -151,7 +151,7 @@ const playAgain = () => {
   modal_lose.classList.add('hidden')
   display_time.classList.remove('display__time--red')
   hearts.forEach((item) => {
-    item.src = 'img/heart.png';
+    item.src = 'img/heart.webp';
     item.alt = 'Full Heart';
   })
   if (startButton.getAttribute('data-mode') === 'mode1') seconds.innerHTML = '40';
@@ -174,7 +174,7 @@ const succes = () => {
 
 const fault = () => {
   if (startButton.getAttribute('data-mode') === 'mode2') {
-    hearts[fails].src = 'img/void-heart.png';
+    hearts[fails].src = 'img/void-heart.webp';
     hearts[fails].alt = 'Void Heart';
     fails++
     if (fails === 3) {

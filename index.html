@@ -23,111 +23,111 @@
     </section>
     <section class="display">
       <div class="display__time" title="Time">
-        <img src="img/time.png" alt="Clock" class="display-image">
-        <span class="seconds">40</span>
+        <img src="img/time.webp" alt="Clock" class="display-image">
+        <span class="seconds" id="seconds">40</span>
         <span>.</span>
-        <span class="cent-seconds">00</span>
+        <span class="cent-seconds" id="cent-seconds">00</span>
       </div>
       <div class="display__mode" id="display-mode" title="Game Mode">Mode 1</div>
       <div class="display__chances disabled" title="Lives">
-        <img src="img/heart.png" alt="Full Heart" class="display-image heart">
-        <img src="img/heart.png" alt="Full Heart" class="display-image heart">
-        <img src="img/heart.png" alt="Full Heart" class="display-image heart">
+        <img src="img/heart.webp" alt="Full Heart" class="display-image heart">
+        <img src="img/heart.webp" alt="Full Heart" class="display-image heart">
+        <img src="img/heart.webp" alt="Full Heart" class="display-image heart">
       </div>
     </section>
     <section class="cards bloqued">
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
       </div>
       <div class="cards__place">
-        <img class="cards__front" src="img/pregunta.png" alt="Guess">
+        <img class="cards__front" src="img/pregunta.webp" alt="Guess">
         <div class="cards__back">
           <img src="" alt="">
         </div>
@@ -142,13 +142,29 @@
   </section>
   <section class="modal hidden" id="lose">
     <div class="container container--modal flex-column">
-      <p>You Lose &#128518;</p>
+      <h2>You Lose &#128518;</h2>
+      <div class="flex flex--modal">
+        <div class="flex flex--stats" title="Time">
+          <img src="img/clock.webp" alt="Clock" class="modal-image">
+          <span class="seconds">40</span>
+          <span>.</span>
+          <span class="cent-seconds">00</span>
+        </div>
+        <div class="flex flex--stats">
+          <img src="img/check.webp" alt="" class="modal-image">
+          <p>23</p>
+        </div>
+        <div class="flex flex--stats">
+          <img src="img/decline.webp" alt="" class="modal-image">
+          <p>45</p>
+        </div>
+      </div>
       <button class="button button--rematch">Rematch</button>
     </div>
   </section>
   <section class="modal hidden" id="modal-mode">
     <div class="container container--modal flex-column">
-      <p>Select Challenge &#128520;</p>
+      <h2>Select Challenge &#128520;</h2>
       <div class="mode-options flex">
         <button class="button button--half" id="mode1">mode 1</button>
         <button class="button button--half unselected" id="mode2">mode 2</button>
