@@ -1,24 +1,22 @@
-const cardsArray = Array.from(document.querySelectorAll('.cards__back'));
-const panelCards = document.querySelector('.cards')
-const display_mode = document.getElementById('display-mode');
-const hearts = Array.from(document.querySelectorAll('.heart'));
+const cardsArray = Array.from(document.querySelectorAll('.cards__back')),
+  panelCards = document.querySelector('.cards'),
+  display_mode = document.getElementById('display-mode'),
+  hearts = Array.from(document.querySelectorAll('.heart')),
+  cent_seconds = document.querySelector('.cent-seconds'),
+  seconds = document.querySelector('.seconds'),
+  lives = document.querySelector('.display__chances'),
+  display_time = document.querySelector('.display__time'),
+  startButton = document.getElementById('start'),
+  modesButton = document.getElementById('modes'),
+  modal_mode = document.getElementById('modal-mode'),
+  mode1_button = document.getElementById('mode1'),
+  mode2_button = document.getElementById('mode2'),
+  instruction1 = document.querySelector('.instruction--mode1'),
+  instruction2 = document.querySelector('.instruction--mode2'),
+  modal_win = document.getElementById('win'),
+  modal_lose = document.getElementById('lose');
 
-const cent_seconds = document.querySelector('.cent-seconds');
-const seconds = document.querySelector('.seconds');
-const lives = document.querySelector('.display__chances');
-const display_time = document.querySelector('.display__time');
-const startButton = document.getElementById('start');
-const modesButton = document.getElementById('modes');
-const modal_mode = document.getElementById('modal-mode');
-const mode1_button = document.getElementById('mode1');
-const mode2_button = document.getElementById('mode2');
-const instruction1 = document.querySelector('.instruction--mode1');
-const instruction2 = document.querySelector('.instruction--mode2');
-const modal_win = document.getElementById('win');
-const modal_lose = document.getElementById('lose');
-
-let selectedCards = []
-let hits = 0, fails = 0, timer, mode = true;
+let selectedCards = [], hits = 0, fails = 0, timer;
 
 const cards = [
   { name: 'onion', image: 'img/onion.png' },
@@ -48,7 +46,8 @@ const shuffle = () => {
     cards[i] = aux;
   }
   cardsArray.forEach((e, j) => {
-    e.innerHTML = `<img src='${cards[j].image}'>`;
+    e.children[0].src = cards[j].image
+    e.children[0].alt = cards[j].name + ' image';
     e.setAttribute('data-name', cards[j].name);
   })
 }
@@ -82,7 +81,6 @@ const modeOne = () => {
     if (cent_count < 10) cent_seconds.innerHTML = '0' + cent_count;
     else if (cent_count === 100) cent_seconds.innerHTML = '00';
     else cent_seconds.innerHTML = cent_count;
-
   }, 10)
 }
 
@@ -96,9 +94,7 @@ const modeTwoTimer = (seg_count, aux) => {
       else {
         seconds.innerHTML = '29'
         timer = modeTwoTimer(29, true);
-        Array.from(document.querySelectorAll('.cards__place')).forEach((e) => {
-          e.classList.remove('flip');
-        })
+        Array.from(document.querySelectorAll('.cards__place')).forEach((e) => e.classList.remove('flip'))
       }
     } else if (cent_count === 0) {
       cent_count = 100;
@@ -116,9 +112,7 @@ const modeTwoTimer = (seg_count, aux) => {
 
 const modeTwo = () => {
   const cards = Array.from(document.querySelectorAll('.cards__place'));
-  cards.forEach((e) => {
-    e.classList.add('flip')
-  })
+  cards.forEach((e) => e.classList.add('flip'))
   seconds.innerHTML = '09'
   timer = modeTwoTimer(9, false);
 }
@@ -157,17 +151,14 @@ const playAgain = () => {
   modal_lose.classList.add('hidden')
   display_time.classList.remove('display__time--red')
   hearts.forEach((item) => {
-    item.src = 'img/heart.png'
+    item.src = 'img/heart.png';
+    item.alt = 'Full Heart';
   })
   if (startButton.getAttribute('data-mode') === 'mode1') seconds.innerHTML = '40';
   else seconds.innerHTML = '10';
   cent_seconds.innerHTML = '00';
-  Array.from(document.querySelectorAll('.flip')).forEach((item) => {
-    item.classList.remove('flip');
-  })
-  Array.from(document.querySelectorAll('.hits')).forEach((item) => {
-    item.classList.remove('hits');
-  })
+  Array.from(document.querySelectorAll('.flip')).forEach((item) => item.classList.remove('flip'))
+  Array.from(document.querySelectorAll('.hits')).forEach((item) => item.classList.remove('hits'))
   panelCards.classList.add('shuffle');
   shuffle();
 }
@@ -184,6 +175,7 @@ const succes = () => {
 const fault = () => {
   if (startButton.getAttribute('data-mode') === 'mode2') {
     hearts[fails].src = 'img/void-heart.png';
+    hearts[fails].alt = 'Void Heart';
     fails++
     if (fails === 3) {
       fails = 0;
@@ -216,9 +208,8 @@ const startGame = () => {
   startButton.classList.add('disabled');
   modesButton.classList.add('disabled');
   panelCards.classList.remove('shuffle');
-  if (startButton.getAttribute('data-mode') === 'mode1') {
+  if (startButton.getAttribute('data-mode') === 'mode1')
     modeOne();
-  }
   else modeTwo();
 }
 
