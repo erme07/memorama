@@ -19,22 +19,22 @@ const cardsArray = Array.from(document.querySelectorAll('.cards__back')),
 let selectedCards = [], hits = 0, fails = 0, timer;
 
 const cards = [
-  { name: 'onion', image: 'img/onion.webp' },
-  { name: 'potato', image: 'img/potato.webp' },
-  { name: 'corn', image: 'img/corn.webp' },
-  { name: 'pumpkin', image: 'img/pumpkin.webp' },
-  { name: 'carrots', image: 'img/carrots.webp' },
-  { name: 'tomato', image: 'img/tomato.webp' },
-  { name: 'champignon', image: 'img/champignon.webp' },
-  { name: 'aubergine', image: 'img/aubergine.webp' },
-  { name: 'onion', image: 'img/onion.webp' },
-  { name: 'potato', image: 'img/potato.webp' },
-  { name: 'corn', image: 'img/corn.webp' },
-  { name: 'pumpkin', image: 'img/pumpkin.webp' },
-  { name: 'carrots', image: 'img/carrots.webp' },
-  { name: 'tomato', image: 'img/tomato.webp' },
-  { name: 'champignon', image: 'img/champignon.webp' },
-  { name: 'aubergine', image: 'img/aubergine.webp' }
+  { name: 'onion', image: './img/onion.webp' },
+  { name: 'potato', image: './img/potato.webp' },
+  { name: 'corn', image: './img/corn.webp' },
+  { name: 'pumpkin', image: './img/pumpkin.webp' },
+  { name: 'carrots', image: './img/carrots.webp' },
+  { name: 'tomato', image: './img/tomato.webp' },
+  { name: 'champignon', image: './img/champignon.webp' },
+  { name: 'aubergine', image: './img/aubergine.webp' },
+  { name: 'onion', image: './img/onion.webp' },
+  { name: 'potato', image: './img/potato.webp' },
+  { name: 'corn', image: './img/corn.webp' },
+  { name: 'pumpkin', image: './img/pumpkin.webp' },
+  { name: 'carrots', image: './img/carrots.webp' },
+  { name: 'tomato', image: './img/tomato.webp' },
+  { name: 'champignon', image: './img/champignon.webp' },
+  { name: 'aubergine', image: './img/aubergine.webp' }
 ]
 
 const shuffle = () => {
