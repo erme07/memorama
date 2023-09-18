@@ -6,11 +6,12 @@
 @font-face {
   font-family: 'textmeone';
   src: url(font/TextMeOne-Regular.ttf);
+  font-display: swap;
 }
 
 :root{
-  --mainColor:#97a83f;
-  --secondColor:#ce5440;
+  --backColor:#97a83f;
+  --secondColor:#d8394c;
 }
 
 body{
@@ -18,7 +19,7 @@ body{
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: #97a83f;
+  background-color: var(--backColor);
   user-select: none;
   font-family: 'textmeone';
   text-transform: uppercase;
@@ -30,17 +31,22 @@ h1{
   font-size: 24px;
   font-weight: bold;
   text-align: center;
-  background-color: rgb(202, 202, 202);
-  border-radius: 5px;
-  margin-bottom: 20px;
 }
+
+.title{
+  border-radius: 5px;
+  background-color: rgb(202, 202, 202);
+  margin-bottom: 15px;
+  height: 29px;
+}
+
 h2{
   font-size: 24px;
 }
-img{
+/* img{
   width: 100%;
   height: auto;
-}
+} */
 
 .container{
   width: 440px;
@@ -48,7 +54,7 @@ img{
   border: 3px solid black;
   border-radius: 10px;
   padding: 20px;
-  gap: 15px;
+  gap: 10px;
 }
 .flex{
   display: flex;
@@ -80,6 +86,7 @@ img{
   font-family: 'textmeone';
   cursor: pointer;
   font-size: 18px;
+  height: 36px;
 }
 
 .flex-column > .button{
@@ -123,7 +130,7 @@ img{
   justify-content: space-between;
   border: 2px solid black;
   border-radius: 5px;
-  height: 35px;
+  height: 42px;
   align-items: center;
 }
 .display__time, .display__chances{
@@ -141,6 +148,7 @@ img{
   padding: 3px 10px;
   color: white;
   border-radius: 5px;
+  height: 28px;
 }
 
 .cent-seconds, .seconds{
@@ -152,6 +160,7 @@ img{
 }
 .display-image{
   width: 18px;
+  height: 18px;
   margin-right: 3px;
 }
 .cards{
@@ -179,7 +188,9 @@ img{
   translate: -50% -50%;
   border-radius: 5px;
   border: 2px solid black;
-  padding: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   transition: transform .4s;
   backface-visibility: hidden;
 }
@@ -187,7 +198,12 @@ img{
 .cards__back{
   transform: rotateY(180deg);
 }
+.cards__back img{
+  width: 60px;
+  height: 60px;
+}
 .cards__front{
+  padding: 10px;
   cursor: pointer;
 }
 .flip .cards__back{
@@ -258,7 +274,8 @@ img{
 }
 
 .modal-image{
-  width: 24px;
+  width: 20px;
+  height: 20px;
   margin-right: 3px;
 }
 .flex--stats{

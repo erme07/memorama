@@ -136,6 +136,7 @@ const changeMode = (e, mode) => {
 
 const saveMode = () => {
   modal_mode.classList.add("hidden");
+  panelCards.classList.add('shuffle');
   if (startButton.getAttribute('data-mode') === 'mode1') {
     lives.classList.add('disabled');
     display_mode.innerHTML = 'mode 1';
@@ -144,6 +145,7 @@ const saveMode = () => {
     lives.classList.remove('disabled');
     display_mode.innerHTML = 'mode 2';
   }
+  setTimeout(() => { panelCards.classList.remove('shuffle') }, 750);
 }
 
 const playAgain = () => {
