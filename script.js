@@ -157,7 +157,6 @@ const saveMode = () => {
     lives.classList.remove('disabled');
     display_mode.innerHTML = 'mode 2';
   }
-  setTimeout(() => { panelCards.classList.remove('shuffle') }, 750);
 }
 
 const playAgain = () => {
@@ -239,8 +238,10 @@ document.addEventListener('click', (e) => {
     startGame();
   if (e.target.matches('.button--rematch'))
     playAgain();
-  if (e.target.matches('#modes'))
+  if (e.target.matches('#modes')) {
     modal_mode.classList.remove("hidden");
+    panelCards.classList.remove('shuffle')
+  }
   if (e.target.matches('#mode1'))
     changeMode(e, 'mode1');
   if (e.target.matches('#mode2'))
