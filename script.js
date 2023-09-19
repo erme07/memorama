@@ -54,15 +54,27 @@ const shuffle = () => {
 
 const endGame = (condition) => {
   selectedCards = [];
-  hits = 0;
-  fails = 0;
   panelCards.classList.add('bloqued');
   startButton.classList.remove('disabled');
   modesButton.classList.remove('disabled');
   lives.classList.remove('disabled');
   clearInterval(timer);
-  if (condition) modal_win.classList.remove('hidden');
-  else modal_lose.classList.remove('hidden');
+  if (condition) {
+    modal_win.classList.remove('hidden');
+    document.getElementById('win-seconds').innerHTML = seconds.innerHTML
+    document.getElementById('win-cent').innerHTML = cent_seconds.innerHTML
+    document.getElementById('win-hits').innerHTML = hits;
+    document.getElementById('win-fails').innerHTML = fails;
+  }
+  else {
+    modal_lose.classList.remove('hidden');
+    document.getElementById('lose-seconds').innerHTML = seconds.innerHTML
+    document.getElementById('lose-cent').innerHTML = cent_seconds.innerHTML
+    document.getElementById('lose-hits').innerHTML = hits;
+    document.getElementById('lose-fails').innerHTML = fails;
+  }
+  hits = 0;
+  fails = 0;
 }
 
 const modeOne = () => {
@@ -180,11 +192,11 @@ const fault = () => {
     hearts[fails].alt = 'Void Heart';
     fails++
     if (fails === 3) {
-      fails = 0;
-      setTimeout(endGame, 400, false)
       endGame(false)
       return
     }
+  } else {
+    fails++
   }
   selectedCards[0].classList.remove('flip');
   selectedCards[1].classList.remove('flip');

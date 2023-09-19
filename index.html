@@ -139,7 +139,23 @@
   </main>
   <section class="modal hidden" id="win">
     <div class="container container--modal flex-column">
-      <p>You Win &#128530;</p>
+      <h2>You Win &#128530;</h2>
+      <div class="flex flex--modal">
+        <div class="flex flex--stats" title="Time">
+          <img src="img/clock.webp" alt="Clock" class="modal-image">
+          <span class="seconds" id="win-seconds">40</span>
+          <span>.</span>
+          <span class="cent-seconds" id="win-cent">00</span>
+        </div>
+        <div class="flex flex--stats">
+          <img src="img/check.webp" alt="" class="modal-image">
+          <p id="win-hits">23</p>
+        </div>
+        <div class="flex flex--stats">
+          <img src="img/decline.webp" alt="" class="modal-image">
+          <p id="win-fails">45</p>
+        </div>
+      </div>
       <button class="button button--rematch">Rematch</button>
     </div>
   </section>
@@ -149,17 +165,17 @@
       <div class="flex flex--modal">
         <div class="flex flex--stats" title="Time">
           <img src="img/clock.webp" alt="Clock" class="modal-image">
-          <span class="seconds">40</span>
+          <span class="seconds" id="lose-seconds">40</span>
           <span>.</span>
-          <span class="cent-seconds">00</span>
+          <span class="cent-seconds" id="lose-cent">00</span>
         </div>
         <div class="flex flex--stats">
           <img src="img/check.webp" alt="" class="modal-image">
-          <p>23</p>
+          <p id="lose-hits">23</p>
         </div>
         <div class="flex flex--stats">
           <img src="img/decline.webp" alt="" class="modal-image">
-          <p>45</p>
+          <p id="lose-fails">45</p>
         </div>
       </div>
       <button class="button button--rematch">Rematch</button>
