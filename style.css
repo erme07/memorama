@@ -171,8 +171,8 @@ h2 {font-size: 24px;}
   height: 45px;
 }
 .cards__front{
-  padding: 10px;
-  padding: 5px;
+  background: white url(img/pregunta.webp) center no-repeat;
+  background-size: 45px;
   cursor: pointer;
 }
 .flip .cards__back {transform: rotateY(0deg);}
@@ -191,8 +191,12 @@ h2 {font-size: 24px;}
 }
 .modal{
   position: absolute;
-  inset: 0;
-  background-color: rgba(0, 0, 0, 0.932);
+  /* inset: 0; */
+  top: 0;
+  left: 0;
+  right: 0;
+  min-height: 100vh;
+  background-color: rgba(0, 0, 0, 0.94);
 }
 .container--modal{
   position: absolute;
@@ -222,6 +226,7 @@ h2 {font-size: 24px;}
   .cards {gap: 7px;}
   .cards__place {width: 80px; height: 80px;}
   .cards__front, .cards__back {width: 70px; height: 70px;}
+  .cards__front {background-size: 55px;}
   .cards__back img {width: 55px; height: 55px;}
 }
 @media screen and (min-width:576px) {
@@ -234,5 +239,6 @@ h2 {font-size: 24px;}
   .cards {gap: 11.33px;}
   .cards__place {width: 90px; height: 90px;}
   .cards__front, .cards__back {width: 80px; height: 80px;}
+  .cards__front {background-size: 60px;}
   .cards__back img {width: 60px; height: 60px;}
 }
