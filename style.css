@@ -8,12 +8,10 @@
   src: url(font/TextMeOne-Regular.ttf);
   font-display: swap;
 }
-
 :root{
   --backColor:#97a83f;
   --secondColor:#d8394c;
 }
-
 body{
   min-height: 100vh;
   display: flex;
@@ -32,28 +30,21 @@ h1{
   font-weight: bold;
   text-align: center;
 }
-
+h2 {font-size: 24px;}
 .title{
   border-radius: 5px;
   background-color: rgb(202, 202, 202);
   margin-bottom: 15px;
   height: 29px;
 }
-
-h2{
-  font-size: 24px;
-}
-/* img{
-  width: 100%;
-  height: auto;
-} */
-
 .container{
   width: 440px;
+  width: 320px;
   background-color: rgb(255, 255, 255);
-  border: 3px solid black;
+  border: 2px solid black;
   border-radius: 10px;
   padding: 20px;
+  padding: 15px;
   gap: 10px;
 }
 .flex{
@@ -67,13 +58,8 @@ h2{
   flex-direction: column;
   align-items: center;
 }
-.flex--modal{
-  width: 100%;
-}
-.container--main{
-  align-items: stretch;
-}
-
+.flex--modal {width: 100%;}
+.container--main {align-items: stretch;}
 
 .button{
   background-color: var(--secondColor);
@@ -88,16 +74,10 @@ h2{
   font-size: 18px;
   height: 36px;
 }
+.flex-column > .button {width: 100%;}
+.button--half {flex-basis: 50%;}
+.mode-options {width: 100%;}
 
-.flex-column > .button{
-  width: 100%;
-}
-.button--half{
-  flex-basis: 50%;
-}
-.mode-options{
-  width: 100%;
-}
 .mode-instruction{
   font-size: 16px;
   padding-left: 18px;
@@ -113,17 +93,11 @@ h2{
   position: absolute;
   top: 50%;
   transition: translate 1s;
-  /* translate: 0px -50%; */
 }
-.instruction--mode2{
-  translate: 300px -50%;
-}
-.instruction--mode1{
-  translate: -300px -50%;
-}
-.show{
-  translate: 0 -50%;
-}
+.instruction--mode2 {translate: 300px -50%;}
+.instruction--mode1 {translate: -300px -50%;}
+.show {translate: 0 -50%;}
+
 .display{
   display: flex;
   padding: 5px 10px;
@@ -140,9 +114,8 @@ h2{
   gap: 2px;
   width: 75px;
 }
-.display__time--red{
-  color: red;
-}
+.display__time--red {color: red;}
+
 .display__mode{
   background-color: black;
   padding: 3px 10px;
@@ -150,14 +123,11 @@ h2{
   border-radius: 5px;
   height: 28px;
 }
-
 .cent-seconds, .seconds{
   display: inline-block;
   width: 18px;
 }
-.seconds{
-  text-align: right;
-}
+.seconds {text-align: right;}
 .display-image{
   width: 18px;
   height: 18px;
@@ -167,22 +137,21 @@ h2{
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 10px;
+  gap: 6px;
 }
 .cards__place{
-  width: 90px;
-  height: 90px;
+  width: 67px;
+  height: 67px;
   background-color: #97a83f;
   border: 2px solid black;
   border-radius: 5px;
   position: relative;
 }
-
 .cards__front, .cards__back{
   background-color: white;
   position: absolute;
-  width: 80px;
-  height: 80px;
+  width: 57px;
+  height: 57px;
   top: 50%;
   left: 50%;
   translate: -50% -50%;
@@ -194,53 +163,32 @@ h2{
   transition: transform .4s;
   backface-visibility: hidden;
 }
-
-.cards__back{
-  transform: rotateY(180deg);
-}
+.cards__back {transform: rotateY(180deg);}
 .cards__back img{
   width: 60px;
   height: 60px;
+  width: 45px;
+  height: 45px;
 }
 .cards__front{
   padding: 10px;
+  padding: 5px;
   cursor: pointer;
 }
-.flip .cards__back{
-  transform: rotateY(0deg);
-}
-.flip .cards__front{
-  transform: rotateY(180deg);
-}
-
-.shuffle .cards__back{
-  animation: .15s linear 5 alternate flipShuffle;
-}
-.shuffle .cards__front{
-  animation: .15s linear 5 alternate flipShuffle2;
-}
-.shuffle .cards__back img{
-  opacity: 0;
-}
+.flip .cards__back {transform: rotateY(0deg);}
+.flip .cards__front {transform: rotateY(180deg);}
+.shuffle .cards__back {animation: .15s linear 5 alternate flipShuffle;}
+.shuffle .cards__front {animation: .15s linear 5 alternate flipShuffle2;}
+.shuffle .cards__back img {opacity: 0;}
 
 @keyframes flipShuffle {
-  0%{
-    transform: rotateY(0deg)
-  }
-  100%{
-    transform: rotateY(180deg)
-  }
+  0% {transform: rotateY(0deg)}
+  100% {transform: rotateY(180deg)}
 }
-
 @keyframes flipShuffle2 {
-  0%{
-    transform: rotateY(180deg)
-  }
-  100%{
-    transform: rotateY(0deg)
-  }
+  0% {transform: rotateY(180deg)}
+  100% {transform: rotateY(0deg)}
 }
-
 .modal{
   position: absolute;
   inset: 0;
@@ -255,48 +203,36 @@ h2{
   justify-content: space-between;
   gap: 30px;
 }
-
-.bloqued{
-  pointer-events: none;
-}
-.disabled{
-  opacity: .3;
-  pointer-events: none;
-}
-.unselected{
-  opacity: .6;
-}
-.hits{
-  filter: grayscale(1);
-}
-.hidden{
-  visibility: hidden;
-}
-
 .modal-image{
   width: 20px;
   height: 20px;
   margin-right: 3px;
 }
-.flex--stats{
-  gap: 3px;
-}
+.bloqued {pointer-events: none;}
+.disabled {opacity: .3; pointer-events: none;}
+.unselected {opacity: .6;}
+.hits {filter: grayscale(1);}
+.hidden {visibility: hidden;}
 
-@media screen and (max-width:576px) {
-  .cards{
-    gap: 7px;
-  }
-  .cards__place{
-    height: unset;
-    width: 23%;
-    aspect-ratio: 1/1;
-  }
-  .cards__front, .cards__back{
-    width: 90%;
-    height: auto;
-  }
-  
+.flex--stats {gap: 3px;}
+
+@media screen and (min-width:375px) {
+  .container {width: 375px;}
+  .container--modal {width: 310px;}
+  .cards {gap: 7px;}
+  .cards__place {width: 80px; height: 80px;}
+  .cards__front, .cards__back {width: 70px; height: 70px;}
+  .cards__back img {width: 55px; height: 55px;}
 }
-/* @media screen and (max-width:400px) {
-  
-} */
+@media screen and (min-width:576px) {
+  .container{
+    width: 440px;
+    padding: 20px;
+    border: 3px solid black;
+  }
+  .container--modal {width: 310px;}
+  .cards {gap: 11.33px;}
+  .cards__place {width: 90px; height: 90px;}
+  .cards__front, .cards__back {width: 80px; height: 80px;}
+  .cards__back img {width: 60px; height: 60px;}
+}
