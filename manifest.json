@@ -2,6 +2,8 @@
   "name": "Memory Game",
   "short_name": "Memory Game",
   "description": "A simple game that tests your memory through fun challenges with time limits",
+  "background_color": "#97a83f",
+  "theme_color": "#cf5540",
   "display": "standalone",
   "orientation": "portrait",
   "start_url": "./?utm_source=web_app_manifest",
@@ -42,6 +44,17 @@
       "sizes": "192x192",
       "type": "image/png",
       "density": "4.0"
+    },
+    {
+      "src": "./img/favicon/android-icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "./img/favicon/maskable_icon.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
     }
   ]
 }
