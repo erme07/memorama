@@ -1,3 +1,10 @@
+let swLocation = 'sw.js'
+
+if (navigator.serviceWorker) {
+  if (window.location.href.includes("localhost")) swLocation = '/sw.js'
+  navigator.serviceWorker.register(swLocation)
+}
+
 const cardsArray = Array.from(document.querySelectorAll('.cards__back')),
   panelCards = document.querySelector('.cards'),
   display_mode = document.getElementById('display-mode'),
