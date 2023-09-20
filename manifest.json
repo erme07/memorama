@@ -6,8 +6,8 @@
   "theme_color": "#cf5540",
   "display": "standalone",
   "orientation": "portrait",
-  "start_url": "./?utm_source=web_app_manifest",
-  "scope": "./",
+  "start_url": "index.html",
+  "scope": "/",
   "icons": [
     {
       "src": "./img/favicon/android-icon-36x36.png",
@@ -49,12 +49,6 @@
       "src": "./img/favicon/android-icon-512x512.png",
       "sizes": "512x512",
       "type": "image/png"
-    },
-    {
-      "src": "./img/favicon/maskable_icon.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
     }
   ]
 }
