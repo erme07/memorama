@@ -1,4 +1,4 @@
-# Memorama
+# Memory Game
 
 Find the same pairs of images in this memory game.
 
@@ -9,7 +9,7 @@ Find the same pairs of images in this memory game.
   - **Mode 2** : _You will have 10 seconds to see the images, then you will have 3 attempts to find all the same pairs._
 - Shows game statistics when finishing a game.
 - Fully responsive.
-- **Work as a progressive web apps (PWA)**.
+- **Work as a progressive web application (PWA)**.
 
 ## Preview
 
